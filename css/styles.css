@@ -1,0 +1,20 @@
+body {
+  background: lightgrey;
+}
+
+.col-md-5 {
+    border: 2px solid black;
+}
+
+.deposits {
+  float: right;
+}
+
+.balances {
+  text-align: center;
+    border: 2px solid black;
+}
+
+.hiddenAnswer {
+  display: none;
+}

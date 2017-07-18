@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery-3.2.1.js"></script>
+    <script src="js/scripts.js"></script>
+    <title>Bank Account</title>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="jumbotron">
+        <h1>Oregon's Finest Banking Institution</h1>
+      </div>
+      <div class="row">
+        <div class="col-md-5 newAccounts">
+          <h3>Register a new account:</h3>
+          <form id="newAccount">
+            <div class="form-group">
+              <label for="accountName">Account Name: </label>
+              <input type="text" class="form-control" id="accountName">
+            </div>
+            <div class="form-group">
+              <label for="initialDeposit">Initial Deposit: </label>
+              <input type="number" class="form-control" id="initialDeposit">
+            </div>
+            <button type="submit" class="btn btn-success">Create Account</button>
+          </form>
+        </div>
+        <div class="col-md-5 deposits">
+          <h3>Deposit or withdraw funds:</h3>
+          <form id="editFunds">
+            <div class="form-group">
+              <label for="depositAmount">Deposit Amount: </label>
+              <input type="text" class="form-control" id="depositAmount">
+            </div>
+            <div class="form-group">
+              <label for="withdrawlAmount">Withdrawl Amount: </label>
+              <input type="text" class="form-control" id="withdrawlAmount">
+            </div>
+            <button type="submit" class="btn btn-info">Submit</button>
+          </form>
+        </div>
+      </div>
+      <div class="row balances">
+        <h3>Current Balance</h3>
+        <div class="hiddenAnswer">
+          <p>The account "<span class="specificName"></span>" has a balance of $<span class="specificBalance"></span>.</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

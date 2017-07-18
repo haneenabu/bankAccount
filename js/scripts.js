@@ -5,50 +5,61 @@ function BankAccount (name, deposit) {
   this.runningBalance = [];
 }
 
-function AccountChange (deposit, withdrawl) {
+this.accountBalance += deposits
+
+this.accountbalance -= withdrawls
+
+function AccountChange (deposit, withdrawl, final) {
   this.credits = deposit;
   this.debits = withdrawl * -1;
+  this.final = final;
 }
 
 AccountChange.prototype.findChange = function() {
+  var z = this.final;
   var x = this.credits;
   var y = this.debits;
-  return  x+y;
+  //If either input is not a number, ignore it and add the others
+  if (isNaN(x)) {
+    return y+z;
+  }else if (isNaN(y)) {
+    return  x+z;
+  }else {
+    return  x+y+z;
+  }
 }
-
-BankAccount.prototype.myBalance = function() {
-  return this.accountBalance += this.runningBalance;
-}
-
 //User Interface Logic
 $(document).ready(function() {
+var final;
+
   $('#newAccount').submit(function(event) {
     event.preventDefault();
-
+    //Take input from user
     var accountName = $('#accountName').val();
-    var initialDeposit = $('#initialDeposit').val();
+    var initialDeposit = parseInt( $('#initialDeposit').val() );
 
-    var newAccount = new BankAccount(accountName, initialDeposit);
+    var newUserAccount = new BankAccount(accountName, initialDeposit);
 
-    console.log(newAccount);
-
-    $('.specificName').text(newAccount.accountName);
-    $('.specificBalance').append(newAccount.accountBalance);
+    //Display account name and initial deposit to user
+    $('.specificName').text(newUserAccount.accountName);
+    $('.specificBalance').text(newUserAccount.accountBalance);
     $('.hiddenAnswer').show();
 
-
+    //store initial deposit amount in final variable
+    final = newUserAccount.accountBalance;
+    //Clear input forms
     $('.form-control').val('');
   });
+
   $('#editFunds').submit(function(event) {
     event.preventDefault();
+    //Take inputs from user as numbers
+    var deposits = parseInt($('#depositAmount').val());
+    var withdrawls = parseInt($('#withdrawlAmount').val());
+    //Create new instance of AccountChange object
 
-    var deposits = parseInt ($('#depositAmount').val() );
-    var withdrawls = parseInt ($('#withdrawlAmount').val() );
-
-    var newChange = new AccountChange(deposits, withdrawls);
-
-    console.log(newChange.findChange() );
-
+    var newChange = new AccountChange(deposits, withdrawls, final);
+    $('.specificBalance').text(newChange.findChange());
     $('.form-control').val('');
   });
 });
